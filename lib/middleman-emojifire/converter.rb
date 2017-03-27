@@ -24,7 +24,7 @@ module Middleman
 
       def emojify(source)
         source.gsub(/:([\w+-]+):/) do |match|
-          if (emoji = Emoji.find_by_alias(Regexp.last_match[1]))
+          if Regexp.last_match && (emoji = Emoji.find_by_alias(Regexp.last_match[1]))
             emoji.raw ? emoji.raw_unicode_character_html : emoji.fallback_image_html
           else
             match
